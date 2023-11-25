@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="10dp">
+
+    <!--all-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <!--start of company logo, job name, company, industry-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/companyLogo"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginLeft="45dp"
+                android:layout_marginTop="30dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/untitled_design__3_" />
+
+            <!--for job title sa taas, company and industry sa baba-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginTop="30dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/sheetJobTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="JOB TITLE"
+                    android:textColor="@color/black"
+                    android:textSize="30sp"
+                    android:textStyle="bold" />
+
+                <!--for company, |, industry-->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/sheetCompanyName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="1dp"
+                        android:text="Company Name"
+                        android:textColor="#655C5C"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="5dp"
+                        android:layout_marginVertical="1dp"
+                        android:text="|"
+                        android:textColor="#655C5C"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/sheetIndustry"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="1dp"
+                        android:text="Industry"
+                        android:textColor="#655C5C"
+                        android:textSize="16sp" />
+                </LinearLayout> <!--end for company, |, industry-->
+            </LinearLayout><!--end for job title sa taas, company and industry sa baba-->
+        </LinearLayout> <!--end of company logo, job name, company, industry-->
+
+        <!--three boxes for loc, salary, type-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="15dp"
+            android:orientation="horizontal"
+            android:textAlignment="center">
+
+            <!--salary box-->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:orientation="vertical"
+                android:textAlignment="center">
+
+                <TextView
+                    android:id="@+id/sheetSalary"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Salary"
+                    android:textSize="20sp">
+                </TextView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Salary"
+                    android:textSize="16sp">
+                </TextView>
+            </LinearLayout> <!-- end of salary box-->
+
+            <!--loc box-->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/sheetLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Location"
+                    android:textSize="20sp">
+                </TextView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Location"
+                    android:textSize="16sp">
+                </TextView>
+            </LinearLayout> <!-- end of loc box-->
+
+            <!--job type box-->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginRight="20dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/sheetJbType"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Job Type"
+                    android:textSize="20sp">
+                </TextView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Job Type"
+                    android:textSize="16sp">
+                </TextView>
+            </LinearLayout> <!-- end of job type box-->
+        </LinearLayout><!--end of three boxes for loc, salary, type-->
+
+            <Button
+                android:id="@+id/btnSheetApply"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="60dp"
+                android:layout_marginHorizontal="60dp"
+                android:backgroundTint="@color/theme"
+                android:text="APPLY">
+            </Button>
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="15dp"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:text="Job Description">
+        </TextView>
+
+        <TextView
+            android:id="@+id/sheetJobDesc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="15dp"
+            android:layout_marginTop="5dp"
+            android:lineSpacingMultiplier="1.1"
+            android:textSize="16dp"
+            android:text="We are seeking a skilled and passionate Barista to join our dynamic team. As a Barista, you will play a key role in creating a positive and welcoming experience for our customers by preparing and serving high-quality coffee beverages.">
+        </TextView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="20dp"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:text="Responsibilities">
+        </TextView>
+
+        <TextView
+            android:id="@+id/sheetResponsibilites"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="15dp"
+            android:layout_marginTop="5dp"
+            android:textSize="16dp"
+            android:lineSpacingMultiplier="1.1"
+            android:text="Customer Service, Menu Knowledge, Cleanliness, Cash Handling, Collaboration, Product Knowledge">
+        </TextView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="20dp"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:text="Qualifications">
+        </TextView>
+
+        <TextView
+            android:id="@+id/sheetQualifications"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="15dp"
+            android:layout_marginTop="5dp"
+            android:textSize="16dp"
+            android:lineSpacingMultiplier="1.1"
+            android:text="1. Previous experience as a Barista. \n2. Strong customer service and communication skills. \n3. Ability to work in a fast-paced environment. \n4. Knowledge of coffee brewing techniques and equipment.\n5. Positive attitude, team player, and a passion for delivering an excellent customer experience.">
+        </TextView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="20dp"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:text="Benefits">
+        </TextView>
+
+        <TextView
+            android:id="@+id/sheetBenefits"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="15dp"
+            android:layout_marginTop="5dp"
+            android:textSize="16dp"
+            android:lineSpacingMultiplier="1.1"
+            android:text="Competitive wage, employee discounts, opportunities for professional development, friendly and inclusive work environment">
+        </TextView>
+
+
+    </LinearLayout> <!--end of all-->
+</androidx.core.widget.NestedScrollView>
+
+
+
