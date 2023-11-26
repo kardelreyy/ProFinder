@@ -11,19 +11,24 @@ class AdapterClass(private val dataList: ArrayList<BaseData>): RecyclerView.Adap
 
     private val VIEW_TYPE_HOME = 1;
     private val VIEW_TYPE_EMPLOY = 2;
-//    private val VIEW_TYPE_APPLIED = 3;
+    private val VIEW_TYPE_APPLIED = 3;
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
             VIEW_TYPE_HOME -> {
-                // Inflate layout for the 'employ' fragment
+                // Inflate layout for the 'homw' fragment
                 val view = LayoutInflater.from(parent.context).inflate(R.layout.homepagejob_card_layout, parent, false)
                 HomeViewHolder(view)
             }
             VIEW_TYPE_EMPLOY -> {
-                // Inflate layout for the 'applied' fragment
+                // Inflate layout for the 'employ' fragment
                 val view = LayoutInflater.from(parent.context).inflate(R.layout.jobposted_tracker_card_layout, parent, false)
                 EmployViewHolder(view)
+            }
+            VIEW_TYPE_APPLIED -> {
+                // Inflate layout for the 'applied' fragment
+                val view = LayoutInflater.from(parent.context).inflate(R.layout.appliedjob_tracker_card_layout, parent, false)
+                ApplyViewHolder(view)
             }
             else -> throw IllegalArgumentException("Invalid view type")
         }
@@ -39,6 +44,10 @@ class AdapterClass(private val dataList: ArrayList<BaseData>): RecyclerView.Adap
                 val employViewHolder = holder as EmployViewHolder
                 employViewHolder.bind(dataList[position] as DataEmploy) // Adjust to your data types
             }
+            VIEW_TYPE_APPLIED -> {
+                val applyViewHolder = holder as ApplyViewHolder
+                applyViewHolder.bind(dataList[position] as DataApply) // Adjust to your data types
+            }
         }
     }
 
@@ -50,7 +59,7 @@ class AdapterClass(private val dataList: ArrayList<BaseData>): RecyclerView.Adap
         return when (dataList[position].type) {
             DataType.HOME -> VIEW_TYPE_HOME
             DataType.EMPLOY -> VIEW_TYPE_EMPLOY
-//            AdapterClass.Type.APPLIED -> VIEW_TYPE_APPLIED
+            DataType.APPLY -> VIEW_TYPE_APPLIED
             else -> throw IllegalArgumentException("Invalid view type")
         }
     }
@@ -78,12 +87,10 @@ class AdapterClass(private val dataList: ArrayList<BaseData>): RecyclerView.Adap
             location.text = data.hdJobLoc
             jobType.text = data.hdJobType
             datePosted.text = data.hdDatePosted
-
         }
     }
 
     class EmployViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        //giving the ids ng layout to variables para malaman ung location nila sa layout
         private val jobTitle : TextView = itemView.findViewById(R.id.employJobTitle)
         private val status : TextView = itemView.findViewById(R.id.employStatus)
         private val branch : TextView = itemView.findViewById(R.id.employBranch)
@@ -102,4 +109,27 @@ class AdapterClass(private val dataList: ArrayList<BaseData>): RecyclerView.Adap
             accepted.text = data.edAccepted
         }
     }
+
+    class ApplyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        private val companyLogo : ImageView = itemView.findViewById(R.id.applyCompanyLogo)
+        private val jobTitle : TextView = itemView.findViewById(R.id.applyJobTitle)
+        private val status : TextView = itemView.findViewById(R.id.applyStatus)
+        private val companyName : TextView = itemView.findViewById(R.id.applyCompanyName)
+        private val salary : TextView = itemView.findViewById(R.id.applySalary)
+        private val location : TextView = itemView.findViewById(R.id.applyJobLoc)
+        private val jobType : TextView = itemView.findViewById(R.id.applyJobType)
+        private val lastUpdated : TextView = itemView.findViewById(R.id.applyLastUpdated)
+
+        fun bind(data: DataApply) {
+            companyLogo.setImageResource(data.adCompanyLogo)
+            jobTitle.text = data.adJobTitle
+            status.text = data.adStatus
+            companyName.text = data.adCompanyName
+            salary.text = data.adSalary
+            location.text = data.adJobLoc
+            jobType.text = data.adJobType
+            lastUpdated.text = data.adLastUpdated
+        }
+    }
+
 }

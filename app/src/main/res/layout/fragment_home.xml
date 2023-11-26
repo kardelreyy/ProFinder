@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -9,37 +8,44 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <EditText
-            android:id="@+id/etSearchBar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingVertical="10dp"
-            android:paddingRight="250dp"
-            android:layout_marginLeft="10dp"
-            android:hint="   Search"
-            android:textColorHint="@color/darksubtext"
-            android:background="@drawable/searchbar_bg"
-            android:inputType="text" />
-
-        <ImageView
-            android:id="@+id/imgFilterBtn"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_weight="1"
-            android:layout_marginHorizontal="4dp"
-            android:src="@drawable/filter_icon"
-            android:tint="@color/icons_color"/>
-    </LinearLayout>
-    
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/myHomeRecyclerView"
-        android:padding="3dp"
-        android:layout_marginTop="60dp"
-        android:background="@color/white"
-        android:clickable="true"/>
+        android:orientation="vertical">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <EditText
+                android:id="@+id/etSearchBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingVertical="10dp"
+                android:paddingRight="250dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginBottom="10dp"
+                android:hint="   Search"
+                android:textColorHint="@color/darksubtext"
+                android:background="@drawable/searchbar_bg"
+                android:inputType="text" />
+
+            <ImageView
+                android:id="@+id/imgFilterBtn"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:layout_marginHorizontal="4dp"
+                android:src="@drawable/filter_icon"
+                android:tint="@color/white"/>
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:id="@+id/myHomeRecyclerView"
+            android:padding="3dp"
+            android:background="@color/white"
+            android:clickable="true"/>
+
+    </LinearLayout>
 </FrameLayout>

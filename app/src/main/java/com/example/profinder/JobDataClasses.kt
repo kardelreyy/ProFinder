@@ -3,7 +3,8 @@ package com.example.profinder
 import android.widget.TextView
 enum class DataType {
     HOME,
-    EMPLOY
+    EMPLOY,
+    APPLY
 }
 
 open class BaseData(
@@ -31,6 +32,17 @@ data class DataEmploy(
     var edRejected : String,
     var edAccepted : String
 ) : BaseData(DataType.EMPLOY)
+
+data class DataApply(
+    val adCompanyLogo : Int,
+    val adJobTitle : String,
+    var adStatus : String,
+    val adCompanyName : String,
+    val adSalary : String,
+    val adJobLoc : String,
+    val adJobType : String,
+    val adLastUpdated : String
+) : BaseData(DataType.APPLY)
 
 //for the page that appears after a card from Home is clicked
 data class DataJob(

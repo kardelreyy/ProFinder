@@ -113,13 +113,6 @@ class Employ : Fragment() {
 
         dataList = arrayListOf<BaseData>()
         getData()
-
-
-        //TESTING LANG KUNG NACCLICK UNG CARD - NACCLICK!!! pero di sya gumagana sa set up na to
-        myCardView.setOnClickListener {
-            Toast.makeText(requireContext(), "Card clickable!", Toast.LENGTH_LONG).show()
-            // ... perform other actions as needed
-        }
     }
 
     private fun getData(){
