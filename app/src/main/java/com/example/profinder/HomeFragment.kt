@@ -5,7 +5,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -13,12 +12,12 @@ import androidx.recyclerview.widget.RecyclerView
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
-class Home : Fragment() {
+class HomeFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
     private lateinit var myCardView: CardView
     private lateinit var daRecyclerView: RecyclerView
-    private lateinit var dataList: ArrayList<BaseData>
+    private lateinit var dataList: ArrayList<JobCreatedDataClass>
     private lateinit var logoList : Array<Int>
     private lateinit var jobNameList : Array<String>
     private lateinit var companyNameList : Array<String>
@@ -103,19 +102,19 @@ class Home : Fragment() {
 
         daRecyclerView = view.findViewById(R.id.myHomeRecyclerView)
 
-        val itemLayout: View = layoutInflater.inflate(R.layout.homepagejob_card_layout, null)
+        val itemLayout: View = layoutInflater.inflate(R.layout.jobcreated_card_layout, null)
         myCardView = itemLayout.findViewById(R.id.jobCard)
 
         daRecyclerView.layoutManager = LinearLayoutManager(requireContext())
         daRecyclerView.setHasFixedSize(true)
 
-        dataList = arrayListOf<BaseData>()
+        dataList = arrayListOf<JobCreatedDataClass>()
         getData()
     }
 
     private fun getData(){
         for(i in logoList.indices){
-            val dataHome = DataHome(
+            val dataHome = JobCreatedDataClass(
                 logoList[i],
                 jobNameList[i],
                 companyNameList[i],
@@ -127,12 +126,12 @@ class Home : Fragment() {
             dataList.add(dataHome)
         }
 
-        daRecyclerView.adapter = AdapterClass(dataList)
+        daRecyclerView.adapter = JobCreatedAdapter(dataList)
     }
 
     companion object {
         fun newInstance(param1: String, param2: String) =
-            Home().apply {
+            HomeFragment().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)

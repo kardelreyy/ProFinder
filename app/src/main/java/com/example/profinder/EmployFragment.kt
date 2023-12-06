@@ -5,7 +5,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -13,13 +12,13 @@ import androidx.recyclerview.widget.RecyclerView
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
-class Employ : Fragment() {
+class EmployFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
     private lateinit var myCardView: CardView
     private lateinit var daRecyclerView: RecyclerView
-    private lateinit var dataList: ArrayList<BaseData>
-    private lateinit var jobNameList : Array<String>
+    private lateinit var dataList: ArrayList<JobPostedDataClass>
+    private lateinit var jobTitleList : Array<String>
     private lateinit var statusList : Array<String>
     private lateinit var datePostedList : Array<String>
     private lateinit var totalApplicantsList : Array<String>
@@ -35,7 +34,7 @@ class Employ : Fragment() {
             param2 = it.getString(ARG_PARAM2)
         }
 
-        jobNameList = arrayOf(
+        jobTitleList = arrayOf(
             "Barista",
             "King of the Pirates",
             "Interior Designer",
@@ -111,14 +110,14 @@ class Employ : Fragment() {
         daRecyclerView.layoutManager = LinearLayoutManager(requireContext())
         daRecyclerView.setHasFixedSize(true)
 
-        dataList = arrayListOf<BaseData>()
+        dataList = arrayListOf<JobPostedDataClass>()
         getData()
     }
 
     private fun getData(){
-        for(i in jobNameList.indices){
-            val dataEmploy = DataEmploy(
-                jobNameList[i],
+        for(i in jobTitleList.indices){
+            val dataEmploy = JobPostedDataClass(
+                jobTitleList[i],
                 statusList[i],
                 branchList[i],
                 datePostedList[i],
@@ -129,13 +128,13 @@ class Employ : Fragment() {
             dataList.add(dataEmploy)
         }
 
-        daRecyclerView.adapter = AdapterClass(dataList)
+        daRecyclerView.adapter = JobPostedAdapter(dataList)
     }
 
 
     companion object {
         fun newInstance(param1: String, param2: String) =
-            Employ().apply {
+            EmployFragment().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)

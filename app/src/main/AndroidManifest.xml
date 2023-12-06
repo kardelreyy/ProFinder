@@ -15,6 +15,15 @@
         <activity
             android:name=".CreateJob"
             android:exported="false" />
+<!--        <activity
+            android:name=".JobPostedDetails"
+            android:exported="false" />-->
+        <activity
+            android:name=".JobDetailActivity"
+            android:exported="false" />
+<!--        <activity
+            android:name=".AppliedJobDetails"
+            android:exported="false" />-->
         <activity
             android:name=".MainActivity"
             android:exported="true">

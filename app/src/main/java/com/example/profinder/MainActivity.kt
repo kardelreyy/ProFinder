@@ -13,13 +13,13 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        replaceFragment(Home())
+        replaceFragment(HomeFragment())
 
         binding.bottomnav.setOnItemSelectedListener {
             when(it.itemId){
-                R.id.home -> replaceFragment(Home())
-                R.id.employ -> replaceFragment(Employ())
-                R.id.applied -> replaceFragment(Apply())
+                R.id.home -> replaceFragment(HomeFragment())
+                R.id.employ -> replaceFragment(EmployFragment())
+                R.id.applied -> replaceFragment(ApplyFragment())
 
                 else ->{
 

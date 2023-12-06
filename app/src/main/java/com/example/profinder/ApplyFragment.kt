@@ -5,7 +5,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -13,14 +12,14 @@ import androidx.recyclerview.widget.RecyclerView
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
-class Apply : Fragment() {
+class ApplyFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
     private lateinit var myCardView: CardView
     private lateinit var daRecyclerView: RecyclerView
-    private lateinit var dataList: ArrayList<BaseData>
+    private lateinit var dataList: ArrayList<AppliedJobDataClass>
     private lateinit var logoList : Array<Int>
-    private lateinit var jobNameList : Array<String>
+    private lateinit var jobTitleList : Array<String>
     private lateinit var statusList : Array<String>
     private lateinit var companyNameList : Array<String>
     private lateinit var salaryList : Array<String>
@@ -42,7 +41,7 @@ class Apply : Fragment() {
             R.drawable.untitled_design__3_,
             R.drawable.untitled_design__3_)
 
-        jobNameList = arrayOf(
+        jobTitleList = arrayOf(
             "Barista",
             "Pirate King",
             "Interior Designer",
@@ -118,15 +117,15 @@ class Apply : Fragment() {
         daRecyclerView.layoutManager = LinearLayoutManager(requireContext())
         daRecyclerView.setHasFixedSize(true)
 
-        dataList = arrayListOf<BaseData>()
+        dataList = arrayListOf<AppliedJobDataClass>()
         getData()
     }
 
     private fun getData(){
         for(i in logoList.indices){
-            val dataApply = DataApply(
+            val dataApply = AppliedJobDataClass(
                 logoList[i],
-                jobNameList[i],
+                jobTitleList[i],
                 statusList[i],
                 companyNameList[i],
                 salaryList[i],
@@ -137,12 +136,12 @@ class Apply : Fragment() {
             dataList.add(dataApply)
         }
 
-        daRecyclerView.adapter = AdapterClass(dataList)
+        daRecyclerView.adapter = AppliedJobAdapter(dataList)
     }
 
     companion object {
         fun newInstance(param1: String, param2: String) =
-            Apply().apply {
+            ApplyFragment().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)

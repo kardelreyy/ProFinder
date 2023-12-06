@@ -3,13 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Apply">
+    tools:context=".ApplyFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/myAppliedRecyclerView"
         android:padding="3dp"
-        android:clickable="true"/>
+        android:clickable="true"
+        android:focusable="true"/>
 
 </FrameLayout>
