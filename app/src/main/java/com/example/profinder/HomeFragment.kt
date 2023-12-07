@@ -1,5 +1,6 @@
 package com.example.profinder
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -12,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(), ItemClickListener {
     private var param1: String? = null
     private var param2: String? = null
     private lateinit var myCardView: CardView
@@ -100,16 +101,18 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        daRecyclerView = view.findViewById(R.id.myHomeRecyclerView)
-
         val itemLayout: View = layoutInflater.inflate(R.layout.jobcreated_card_layout, null)
         myCardView = itemLayout.findViewById(R.id.jobCard)
 
+        daRecyclerView = view.findViewById(R.id.myHomeRecyclerView)
         daRecyclerView.layoutManager = LinearLayoutManager(requireContext())
         daRecyclerView.setHasFixedSize(true)
 
         dataList = arrayListOf<JobCreatedDataClass>()
         getData()
+
+        val adapter = JobCreatedAdapter(dataList, this)
+        daRecyclerView.adapter = adapter
     }
 
     private fun getData(){
@@ -125,8 +128,13 @@ class HomeFragment : Fragment() {
             )
             dataList.add(dataHome)
         }
+    }
 
-        daRecyclerView.adapter = JobCreatedAdapter(dataList)
+    override fun onItemClick(position: Int) {
+        // Handle item click, for example, navigate to a new activity
+        val intent = Intent(requireContext(), JobDetailActivity::class.java)
+        intent.putExtra("position", position)
+        startActivity(intent)
     }
 
     companion object {
