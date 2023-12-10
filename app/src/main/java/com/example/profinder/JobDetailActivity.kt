@@ -11,12 +11,10 @@ class JobDetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home_job_details)
 
-        val sampleButton: Button = findViewById(R.id.btnBack)
-
-        // Set an OnClickListener for the button
-        sampleButton.setOnClickListener {
+        val backToHome : Button = findViewById(R.id.btnBack)
+        backToHome.setOnClickListener {
             // Handle button click, for example, show a toast or navigate to a new activity
-            val intent = Intent(this, HomeFragment::class.java)
+            val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
     }

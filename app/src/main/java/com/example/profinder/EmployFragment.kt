@@ -1,10 +1,13 @@
 package com.example.profinder
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.ImageButton
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -29,10 +32,9 @@ class EmployFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
+        /*arguments?.let {
             param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+            param2 = it.getString(ARG_PARAM2)*/
 
         jobTitleList = arrayOf(
             "Barista",
@@ -96,7 +98,8 @@ class EmployFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_employ, container, false)
+        val view = inflater.inflate(R.layout.fragment_employ, container, false)
+        return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -109,9 +112,15 @@ class EmployFragment : Fragment() {
 
         daRecyclerView.layoutManager = LinearLayoutManager(requireContext())
         daRecyclerView.setHasFixedSize(true)
-
         dataList = arrayListOf<JobPostedDataClass>()
         getData()
+
+        val createJobBtn = view.findViewById<ImageButton>(R.id.btnCreateNewJob)
+        createJobBtn.setOnClickListener {
+            // Handle button click, for example, show a toast or navigate to a new activity
+            val intent = Intent(activity, CreateJob::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun getData(){

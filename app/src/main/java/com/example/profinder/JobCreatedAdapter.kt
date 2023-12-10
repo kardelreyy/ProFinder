@@ -11,8 +11,8 @@ interface ItemClickListener {
     fun onItemClick(position: Int)
 }
 
-class JobCreatedAdapter (private val dataList: ArrayList<JobCreatedDataClass>,
-private val itemClickListener: ItemClickListener
+class JobCreatedAdapter (private val dataList: ArrayList<JobsDataClass>,
+                         private val itemClickListener: ItemClickListener
 ) : RecyclerView.Adapter<JobCreatedAdapter.ViewHolderClass>() {
 
     class ViewHolderClass(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -23,6 +23,10 @@ private val itemClickListener: ItemClickListener
         val rvLocation: TextView = itemView.findViewById(R.id.homeJobLoc)
         val rvJobType: TextView = itemView.findViewById(R.id.homeJobType)
         val rvDatePosted: TextView = itemView.findViewById(R.id.homeDatePosted)
+//        val rvDesc: TextView = itemView.findViewById(R.id.sheetJobDesc)
+//        val rvResponsibilities: TextView = itemView.findViewById(R.id.sheetResponsibilites)
+//        val rvQualifications: TextView = itemView.findViewById(R.id.sheetQualifications)
+//        val rvBenefits: TextView = itemView.findViewById(R.id.sheetBenefits)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderClass {
@@ -35,13 +39,12 @@ private val itemClickListener: ItemClickListener
     }
     override fun onBindViewHolder(holder: ViewHolderClass, position: Int) {
         val currentItem = dataList[position]
-        holder.rvLogo.setImageResource(currentItem.hdCompanyLogo)
-        holder.rvJobTitle.text = currentItem.hdJobTitle
-        holder.rvCompany.text = currentItem.hdCompanyName
-        holder.rvSalary.text = currentItem.hdSalary
-        holder.rvLocation.text = currentItem.hdJobLoc
-        holder.rvJobType.text = currentItem.hdJobType
-        holder.rvDatePosted.text = currentItem.hdDatePosted
+        /*holder.rvLogo.setImageResource(currentItem.jdCompanyLogo)*/
+        holder.rvJobTitle.text = currentItem.jobTitle
+        holder.rvCompany.text = currentItem.offeror
+        holder.rvSalary.text = currentItem.jobSalary
+        holder.rvLocation.text = currentItem.jobLoc
+        holder.rvJobType.text = currentItem.jobType
 
         holder.itemView.setOnClickListener {
             itemClickListener.onItemClick(position)

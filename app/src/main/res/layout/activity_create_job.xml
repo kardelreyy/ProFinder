@@ -14,6 +14,7 @@
         android:orientation="horizontal">
 
         <Button
+            android:id="@+id/backBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -40,6 +41,7 @@
         </TextView>
 
         <Button
+            android:id="@+id/saveJobBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -67,25 +69,13 @@
             android:paddingHorizontal="10dp"
             android:paddingBottom="5dp">
 
-            <!-- Image Upload -->
-            <Button
-                android:id="@+id/btnUploadImage"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:layout_marginTop="4dp"
-                android:layout_marginHorizontal="60dp"
-                android:background="@drawable/form_field_border"
-                android:text="Upload Company Logo"
-                android:drawableLeft="@drawable/baseline_upload_24"
-                android:textColor="@color/darksubtext"/>
-
             <!-- Job Title -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Job Title"
                 android:textSize="15sp"
+                android:layout_marginTop="10dp"
                 android:layout_marginBottom="3dp">
             </TextView>
 
@@ -198,15 +188,14 @@
                         android:layout_height="wrap_content"
                         android:entries="@array/postedjob_types"
                         android:paddingVertical="8dp"
-                        android:paddingLeft="8dp"
-                        android:paddingRight="106dp"/>
+                        android:paddingEnd="8dp"
+                        android:layout_marginEnd="20dp"/>
                 </LinearLayout>
 
                 <!-- Job Type -->
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:orientation="vertical"
                     android:layout_marginLeft="7dp">
 
@@ -219,10 +208,11 @@
 
                     <Spinner
                         android:id="@+id/spinnerJobType"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:entries="@array/postedjob_status"
-                        android:padding="8dp" />
+                        android:paddingVertical="8dp"
+                        android:paddingEnd="8dp" />
                 </LinearLayout>
             </LinearLayout>
 

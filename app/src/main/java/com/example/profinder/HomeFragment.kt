@@ -18,15 +18,13 @@ class HomeFragment : Fragment(), ItemClickListener {
     private var param2: String? = null
     private lateinit var myCardView: CardView
     private lateinit var daRecyclerView: RecyclerView
-    private lateinit var dataList: ArrayList<JobCreatedDataClass>
+    private lateinit var dataList: ArrayList<JobsDataClass>
     private lateinit var logoList : Array<Int>
     private lateinit var jobNameList : Array<String>
     private lateinit var companyNameList : Array<String>
     private lateinit var salaryList : Array<String>
     private lateinit var jobLocationList : Array<String>
     private lateinit var jobTypeList : Array<String>
-    private lateinit var datePostedList : Array<String>
-
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
@@ -81,14 +79,6 @@ class HomeFragment : Fragment(), ItemClickListener {
             "One-time",
             "Full-time"
         )
-
-        datePostedList = arrayOf(
-            "5d ago",
-            "4d ago",
-            "3d ago",
-            "2h ago",
-            "1m ago"
-        )
     }
 
     override fun onCreateView(
@@ -108,7 +98,7 @@ class HomeFragment : Fragment(), ItemClickListener {
         daRecyclerView.layoutManager = LinearLayoutManager(requireContext())
         daRecyclerView.setHasFixedSize(true)
 
-        dataList = arrayListOf<JobCreatedDataClass>()
+        dataList = arrayListOf<JobsDataClass>()
         getData()
 
         val adapter = JobCreatedAdapter(dataList, this)
@@ -117,14 +107,13 @@ class HomeFragment : Fragment(), ItemClickListener {
 
     private fun getData(){
         for(i in logoList.indices){
-            val dataHome = JobCreatedDataClass(
+            val dataHome = JobsDataClass(
                 logoList[i],
                 jobNameList[i],
                 companyNameList[i],
                 salaryList[i],
                 jobLocationList[i],
-                jobTypeList[i],
-                datePostedList[i]
+                jobTypeList[i]
             )
             dataList.add(dataHome)
         }
