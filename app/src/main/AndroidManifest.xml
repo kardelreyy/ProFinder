@@ -13,17 +13,24 @@
         android:theme="@style/Theme.ProFinder"
         tools:targetApi="31">
         <activity
+            android:name=".EditJob"
+            android:exported="false" />
+        <activity
             android:name=".CreateJob"
             android:exported="false" />
-<!--        <activity
+        <!--
+        <activity
             android:name=".JobPostedDetails"
-            android:exported="false" />-->
+            android:exported="false" />
+        -->
         <activity
             android:name=".JobDetailActivity"
             android:exported="false" />
-<!--        <activity
+        <!--
+        <activity
             android:name=".AppliedJobDetails"
-            android:exported="false" />-->
+            android:exported="false" />
+        -->
         <activity
             android:name=".MainActivity"
             android:exported="true">

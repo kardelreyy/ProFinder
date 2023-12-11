@@ -229,10 +229,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="8dp"
+                android:gravity="top|left"
                 android:layout_marginBottom="10dp"
                 android:background="@drawable/form_field_border"
                 android:inputType="textMultiLine"
-                android:lines="3"/>
+                android:lines="3"
+                android:minLines="3"
+                android:scrollHorizontally="false"
+                android:scrollbars="vertical"
+                />
 
             <!-- Responsibilities -->
             <TextView
@@ -247,10 +252,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="8dp"
+                android:gravity="top|left"
                 android:layout_marginBottom="10dp"
                 android:background="@drawable/form_field_border"
                 android:inputType="textMultiLine"
-                android:lines="3"/>
+                android:lines="3"
+                android:minLines="3"
+                android:scrollHorizontally="false"
+                android:scrollbars="vertical"/>
 
             <!-- Qualifications -->
             <TextView
@@ -265,10 +274,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="8dp"
+                android:gravity="top|left"
                 android:layout_marginBottom="10dp"
                 android:background="@drawable/form_field_border"
                 android:inputType="textMultiLine"
-                android:lines="3"/>
+                android:lines="3"
+                android:minLines="3"
+                android:scrollHorizontally="false"
+                android:scrollbars="vertical"/>
 
             <!-- Benefits -->
             <TextView
@@ -283,10 +296,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="8dp"
-                android:layout_marginBottom="20dp"
+                android:gravity="top|left"
+                android:layout_marginBottom="30dp"
                 android:background="@drawable/form_field_border"
                 android:inputType="textMultiLine"
-                android:lines="3"/>
+                android:lines="3"
+                android:minLines="3"
+                android:scrollHorizontally="false"
+                android:scrollbars="vertical" />
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>

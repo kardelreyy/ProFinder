@@ -7,6 +7,7 @@ data class JobsDataClass(
     val offeror : String,
     val jobSalary : String,
     val jobLoc : String,
+    val jobStatus : String,
     val jobType : String,
     var jobDesc : String? = null,
     var jobResponsibility : String? = null,

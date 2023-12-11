@@ -21,9 +21,10 @@
                 android:layout_height="wrap_content"
                 android:paddingVertical="10dp"
                 android:paddingEnd="250dp"
+                android:paddingStart="20dp"
                 android:layout_marginStart="10dp"
                 android:layout_marginBottom="10dp"
-                android:hint="   Search"
+                android:hint="Search"
                 android:textColorHint="@color/darksubtext"
                 android:background="@drawable/searchbar_bg"
                 android:inputType="text" />

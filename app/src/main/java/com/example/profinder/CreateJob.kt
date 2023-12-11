@@ -49,7 +49,7 @@ class CreateJob : AppCompatActivity() {
                 Toast.makeText(this, "Please fill in all fields", Toast.LENGTH_LONG).show()
             } else {
                 // if fields are ano, magadd na sha
-                val job = JobsDataClass(0, 0, dbTitle, dbOfferor, dbSalary, dbLoc, dbType, dbDesc, dbRespon, dbQuali, dbBenefits)
+                val job = JobsDataClass(0, 0, dbTitle, dbOfferor, dbSalary, dbLoc, dbStatus, dbType, dbDesc, dbRespon, dbQuali, dbBenefits)
                 val insertJob = dbHelper.insertJob(job)
 
                 finish()
