@@ -53,7 +53,7 @@ class CreateJob : AppCompatActivity() {
                 val insertJob = dbHelper.insertJob(job)
 
                 finish()
-                if (insertJob == 1L) {
+                if (insertJob != 1L) {
                     Toast.makeText(this, "Job Created Successfully", Toast.LENGTH_SHORT).show()
                 } else {
                     // Validation if register process failed

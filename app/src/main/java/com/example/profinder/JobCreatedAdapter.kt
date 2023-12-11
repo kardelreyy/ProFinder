@@ -24,10 +24,10 @@ class JobCreatedAdapter (private val jobList: List<JobsDataClass>) : RecyclerVie
         val rvSalary: TextView = itemView.findViewById(R.id.homeSalary)
         val rvLocation: TextView = itemView.findViewById(R.id.homeJobLoc)
         val rvJobType: TextView = itemView.findViewById(R.id.homeJobType)
-        val rvDesc: TextView = itemView.findViewById(R.id.sheetJobDesc)
-        val rvResponsibilities: TextView = itemView.findViewById(R.id.sheetResponsibilites)
-        val rvQualifications: TextView = itemView.findViewById(R.id.sheetQualifications)
-        val rvBenefits: TextView = itemView.findViewById(R.id.sheetBenefits)
+//        val rvDesc: TextView = itemView.findViewById(R.id.sheetJobDesc)
+//        val rvResponsibilities: TextView = itemView.findViewById(R.id.sheetResponsibilites)
+//        val rvQualifications: TextView = itemView.findViewById(R.id.sheetQualifications)
+//        val rvBenefits: TextView = itemView.findViewById(R.id.sheetBenefits)
 
         init {
             itemView.setOnClickListener {
@@ -49,10 +49,10 @@ class JobCreatedAdapter (private val jobList: List<JobsDataClass>) : RecyclerVie
         holder.rvSalary.text = currentItem.jobSalary
         holder.rvLocation.text = currentItem.jobLoc
         holder.rvJobType.text = currentItem.jobType
-        holder.rvDesc.text = currentItem.jobDesc
-        holder.rvResponsibilities.text = currentItem.jobResponsibility
-        holder.rvQualifications.text = currentItem.jobQualifications
-        holder.rvBenefits.text = currentItem.jobBenefits
+//        holder.rvDesc.text = currentItem.jobDesc
+//        holder.rvResponsibilities.text = currentItem.jobResponsibility
+//        holder.rvQualifications.text = currentItem.jobQualifications
+//        holder.rvBenefits.text = currentItem.jobBenefits
 
         /*holder.itemView.setOnClickListener {
             itemClickListener.onItemClick(position)

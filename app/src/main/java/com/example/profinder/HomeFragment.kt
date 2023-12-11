@@ -46,6 +46,15 @@ class HomeFragment : Fragment(){
                 // Open JobDetailActivity with details of the clicked job
                 val intent = Intent(requireContext(), JobDetailActivity::class.java)
                 intent.putExtra("jobId", selectedJob.jobId)
+                intent.putExtra("jobTitle", selectedJob.jobTitle)
+                intent.putExtra("jobCompany", selectedJob.offeror)
+                intent.putExtra("jobSalary", selectedJob.jobSalary)
+                intent.putExtra("jobLocation", selectedJob.jobLoc)
+                intent.putExtra("jobType", selectedJob.jobType)
+                intent.putExtra("jobDesc", selectedJob.jobDesc)
+                intent.putExtra("jobBenefits", selectedJob.jobBenefits)
+                intent.putExtra("jobQualy", selectedJob.jobQualifications)
+                intent.putExtra("jobResp", selectedJob.jobResponsibility)
                 startActivity(intent)
 
                 /*val intent = Intent(requireContext(), JobDetailActivity::class.java)
