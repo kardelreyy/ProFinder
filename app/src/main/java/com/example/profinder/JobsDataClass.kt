@@ -1,7 +1,7 @@
 package com.example.profinder
 
 data class JobsDataClass(
-    /*val jdCompanyLogo : Int,*/
+    val jobId : Int,
     val userIdFK : Int,
     val jobTitle : String,
     val offeror : String,

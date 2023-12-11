@@ -54,12 +54,6 @@
                 android:textSize="18sp"/>
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="5dp">
-
             <TextView
                 android:id="@+id/employBranch"
                 android:layout_width="wrap_content"
@@ -70,17 +64,26 @@
                 android:textColor="@color/darksubtext"
                 android:textSize="16sp"/>
 
-            <TextView
-                android:id="@+id/employDatePosted"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_marginHorizontal="15dp"
-                android:text=" Date Posted"
-                android:textAlignment="textEnd"
-                android:textColor="@color/lightsubtext"
-                android:textSize="14sp"/>
-        </LinearLayout>
+        <TextView
+            android:id="@+id/deleteJobBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="15dp"
+            android:text="DELETE"
+            android:textColor="@color/darksubtext"
+            android:textSize="20sp"/>
+
+        <TextView
+            android:id="@+id/editJobBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="15dp"
+            android:text="EDIT"
+            android:textColor="@color/darksubtext"
+            android:textSize="20sp"/>
+
 
         <View
             android:layout_width="match_parent"

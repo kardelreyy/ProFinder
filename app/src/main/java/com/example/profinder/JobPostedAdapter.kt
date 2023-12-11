@@ -13,7 +13,6 @@ class JobPostedAdapter(private val dataList: ArrayList<JobPostedDataClass>): Rec
         val rvJobTitle: TextView = itemView.findViewById(R.id.employJobTitle)
         val rvStatus: TextView = itemView.findViewById(R.id.employStatus)
         val rvBranch: TextView = itemView.findViewById(R.id.employBranch)
-        val rvDatePosted: TextView = itemView.findViewById(R.id.employDatePosted)
         val rvApplicants: TextView = itemView.findViewById(R.id.employTotalApplicants)
         val rvRejected: TextView = itemView.findViewById(R.id.employRejectNum)
         val rvAccepted: TextView = itemView.findViewById(R.id.employAcceptNum)
@@ -34,7 +33,6 @@ class JobPostedAdapter(private val dataList: ArrayList<JobPostedDataClass>): Rec
         holder.rvJobTitle.text = currentItem.edJobTitle
         holder.rvStatus.text = currentItem.edStatus
         holder.rvBranch.text = currentItem.edBranch
-        holder.rvDatePosted.text = currentItem.edDatePosted
         holder.rvApplicants.text = currentItem.edApplicants
         holder.rvRejected.text = currentItem.edRejected
         holder.rvAccepted.text = currentItem.edAccepted

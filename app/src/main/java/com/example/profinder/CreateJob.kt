@@ -16,7 +16,7 @@ class CreateJob : AppCompatActivity() {
 
         dbHelper = DBHelper(this)
 
-        /*val accountIdFk = 1*/
+        val accountIdFk = 1
         val title = findViewById<EditText>(R.id.editJobName)
         val offeror = findViewById<EditText>(R.id.editCompany)
         val salary = findViewById<EditText>(R.id.editSalary)
@@ -49,16 +49,17 @@ class CreateJob : AppCompatActivity() {
                 Toast.makeText(this, "Please fill in all fields", Toast.LENGTH_LONG).show()
             } else {
                 // if fields are ano, magadd na sha
-                val job = JobsDataClass(0, dbTitle, dbOfferor, dbSalary, dbLoc, dbType, dbDesc, dbRespon, dbQuali, dbBenefits)
+                val job = JobsDataClass(0, 0, dbTitle, dbOfferor, dbSalary, dbLoc, dbType, dbDesc, dbRespon, dbQuali, dbBenefits)
                 val insertJob = dbHelper.insertJob(job)
 
+                finish()
                 if (insertJob == 1L) {
                     Toast.makeText(this, "Job Created Successfully", Toast.LENGTH_SHORT).show()
                 } else {
                     // Validation if register process failed
-                    Toast.makeText(this, "Creation Failed, Please try again", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Creation Failed, Please try again", Toast.LENGTH_SHORT)
+                        .show()
                 }
-                finish()
             }
         }
 
