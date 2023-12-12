@@ -210,7 +210,7 @@ class DBHelper (context: Context): SQLiteOpenHelper(context,DATABASE_NAME, null,
             put(KEY_DETAIL_BENEFITS, job.jobBenefits)
         }
 
-        val updateJob = db.update(TABLE_JOBS, contentValues, "KEY_JOB_ID=?", null)
+        val updateJob = db.update(TABLE_JOBS, contentValues, "$KEY_JOB_ID = ?", arrayOf(job.jobId.toString()))
 
         db.close()
         return updateJob
