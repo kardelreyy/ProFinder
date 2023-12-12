@@ -3,6 +3,7 @@ package com.example.profinder
 import android.content.Intent
 import android.os.Bundle
 import android.sax.StartElementListener
+import android.text.TextUtils
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
@@ -17,7 +18,7 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var loginDBHelper: DBHelper
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-            binding = ActivityLoginBinding.inflate(layoutInflater)
+        binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         loginDBHelper = DBHelper(this)
@@ -32,16 +33,22 @@ class LoginActivity : AppCompatActivity() {
 
 
     private fun loginUser (username: String,password:String){
-        val LoginCorrect = loginDBHelper.readUserByUsername(username,password)
-        if (LoginCorrect){
-            Toast.makeText(this, "Login Successful", Toast.LENGTH_LONG).show()
+        if (TextUtils.isEmpty(binding.enterEmailLogin.text.toString()) || TextUtils.isEmpty(binding.enterPasswordLogin.text.toString())) {
 
-            val i = Intent(this, MainActivity::class.java )
-            startActivity(i)
-            finish()
-        }
-        else{
-            Toast.makeText(this, "Incorrect Details", Toast.LENGTH_LONG).show()
+            // if email and pwd edit text is empty we are displaying a toast message
+            Toast.makeText(this, "Please Enter Email and Password", Toast.LENGTH_SHORT).show();
+
+        } else {
+            val LoginCorrect = loginDBHelper.readUserByUsername(username, password)
+            if (LoginCorrect) {
+                Toast.makeText(this, "Login Successful", Toast.LENGTH_LONG).show()
+
+                val i = Intent(this, MainActivity::class.java)
+                startActivity(i)
+                finish()
+            } else {
+                Toast.makeText(this, "Incorrect Details", Toast.LENGTH_LONG).show()
+            }
         }
     }
     fun goSignup (view: View){

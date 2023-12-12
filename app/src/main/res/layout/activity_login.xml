@@ -11,13 +11,15 @@
         android:layout_width="360dp"
         android:layout_height="350dp"
         android:layout_centerInParent="true"
+        android:layout_gravity="center"
         android:layout_marginStart="?actionBarSize"
         android:layout_marginEnd="?actionBarSize"
         android:alpha="0.5"
         android:background="@drawable/rounded_login_ui"
         android:backgroundTint="@color/white"
         android:backgroundTintMode="add"
-        android:elevation="60dp">
+        android:elevation="60dp"
+        android:gravity="center">
 
         <LinearLayout
             android:id="@+id/op"
@@ -29,7 +31,7 @@
             <TextView
                 android:id="@+id/LoginTV"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="48dp"
                 android:text="Login"
                 android:textAlignment="center"
                 android:textColor="@color/black"
@@ -38,16 +40,16 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="48dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:orientation="horizontal"
                 android:textAlignment="textEnd">
 
                 <TextView
-                    android:id="@+id/emallLoginTB"
+                    android:id="@+id/emallLoginTV"
                     android:layout_width="100dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="48dp"
                     android:gravity="center_vertical"
                     android:text="Email:"
                     android:textAlignment="textEnd"
@@ -57,7 +59,7 @@
                 <EditText
                     android:id="@+id/enterEmailLogin"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
+                    android:layout_height="48dp"
                     android:layout_weight="1"
                     android:ems="10"
                     android:gravity="center_vertical"
@@ -72,15 +74,15 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="48dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/passwordLoginTB"
+                    android:id="@+id/passwordLoginTV"
                     android:layout_width="100dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="48dp"
                     android:gravity="center_vertical"
                     android:text="Password:"
                     android:textAlignment="textEnd"
@@ -90,7 +92,7 @@
                 <EditText
                     android:id="@+id/enterPasswordLogin"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
+                    android:layout_height="48dp"
                     android:ems="10"
                     android:gravity="center_vertical"
                     android:hint="Password"
@@ -105,23 +107,25 @@
             <Button
                 android:id="@+id/confirmLoginBtn"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="48dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginBottom="10dp"
-                android:text="Confirm" />
+                android:background="#1B2142"
+                android:text="Confirm"
+                android:textColorHighlight="#1B2142" />
 
             <TextView
                 android:id="@+id/signUpAccTV"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
-                android:layout_marginTop="10dp"
+                android:gravity="center"
                 android:onClick="goSignup"
                 android:text="No Account yet? Sign Up now"
                 android:textAlignment="center"
-                android:textColor="@android:color/holo_blue_light"
-                android:textSize="10sp"
+                android:textColor="#0082D8"
+                android:textSize="14sp"
                 android:textStyle="bold|italic" />
 
         </LinearLayout>
