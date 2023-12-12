@@ -44,7 +44,11 @@ class DBHelper (context: Context): SQLiteOpenHelper(context,DATABASE_NAME, null,
             private const val KEY_DETAIL_BENEFITS = "jobDetailsBenefits"
 
         //Kulang nalang is Applicants Table hehe (yung sa JobsPosted tsaka JobsApplied may iba na me naisip kung pano)
-
+        private val TABLE_APPLICANTS = "Applicants"
+            private const val KEY_APPLICATION_ID  = "applicantID"
+            private const val KEY_JOB_ID_FK = "jobId_FK"
+            private const val KEY_ACC_ID_FK1 = "accountsId_FK"
+            private const val KEY_APP_STATUS = "applicationStatus"
 
 
     }
@@ -74,6 +78,14 @@ class DBHelper (context: Context): SQLiteOpenHelper(context,DATABASE_NAME, null,
                 +   KEY_DETAIL_BENEFITS +               " STRING,"
                 +   "FOREIGN KEY($KEY_ACC_ID_FK) REFERENCES $TABLE_ACCOUNTS($KEY_ACCOUNTS_ID))")
         db?.execSQL(CREATE_JOB_TABLE)
+
+        val CREATE_APPLICANTS_TABLE = ("CREATE TABLE " + TABLE_APPLICANTS + "("
+            +   KEY_APPLICATION_ID +    " INTEGER PRIMARY KEY autoincrement,"
+            +   KEY_JOB_ID_FK +         " INTEGER,"
+            +   KEY_ACC_ID_FK1 +        " INTEGER,"
+            +   KEY_APP_STATUS +        " STRING,"
+            +   "FOREIGN KEY($KEY_JOB_ID_FK) REFERENCES $TABLE_JOBS($KEY_JOB_ID))"
+            +   "FOREIGN KEY($KEY_ACC_ID_FK1) REFERENCES $TABLE_ACCOUNTS($KEY_ACCOUNTS_ID))")
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
