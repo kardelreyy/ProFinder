@@ -22,7 +22,8 @@
             android:layout_height="wrap_content"
             android:paddingEnd="10dp"
             android:background="#00000000"
-            app:srcCompat="@drawable/baseline_arrow_back_24" />
+            app:srcCompat="@drawable/baseline_arrow_back_24"
+            android:contentDescription="Go Back to Home"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -45,7 +46,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="#00000000"
-            app:srcCompat="@drawable/baseline_done_24" />
+            app:srcCompat="@drawable/baseline_done_24"
+            android:contentDescription="Create New Job"/>
 
 
     </LinearLayout>
@@ -216,7 +218,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="15sp"
                 android:layout_marginBottom="3dp"
-                android:text="Job Description"/>
+                android:text="Job Description" />
 
             <EditText
                 android:id="@+id/editJobDescription"
@@ -231,7 +233,7 @@
                 android:minLines="3"
                 android:scrollHorizontally="false"
                 android:scrollbars="vertical"
-                />
+                android:contentDescription="Enter Job Description"/>
 
             <!-- Responsibilities -->
             <TextView
@@ -253,7 +255,8 @@
                 android:lines="3"
                 android:minLines="3"
                 android:scrollHorizontally="false"
-                android:scrollbars="vertical"/>
+                android:scrollbars="vertical"
+                android:contentDescription="Enter Job Responsibilities"/>
 
             <!-- Qualifications -->
             <TextView
@@ -275,7 +278,8 @@
                 android:lines="3"
                 android:minLines="3"
                 android:scrollHorizontally="false"
-                android:scrollbars="vertical"/>
+                android:scrollbars="vertical"
+                android:contentDescription="Enter Job Qualifications"/>
 
             <!-- Benefits -->
             <TextView
@@ -283,7 +287,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="15sp"
                 android:layout_marginBottom="3dp"
-                android:text="Benefits"/>
+                android:text="Benefits" />
 
             <EditText
                 android:id="@+id/editBenefits"
@@ -297,7 +301,8 @@
                 android:lines="3"
                 android:minLines="3"
                 android:scrollHorizontally="false"
-                android:scrollbars="vertical" />
+                android:scrollbars="vertical"
+                android:contentDescription="Enter Job Benefits"/>
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
