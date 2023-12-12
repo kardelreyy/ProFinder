@@ -32,7 +32,7 @@ class JobCreatedAdapter (private var jobList: List<JobsDataClass>) : RecyclerVie
 //        val rvQualifications: TextView = itemView.findViewById(R.id.sheetQualifications)
 //        val rvBenefits: TextView = itemView.findViewById(R.id.sheetBenefits)
 
-         val editJob: Button = itemView.findViewById(R.id.updateJobBtn)
+         val editJob: Button = itemView.findViewById(R.id.editJob)
 
         init {
             itemView.setOnClickListener {
