@@ -97,10 +97,10 @@ class DBHelper (context: Context): SQLiteOpenHelper(context,DATABASE_NAME, null,
 
     }
     @SuppressLint("Range")
-    fun readUserByUsername(username: String): Boolean {
+    fun readUserByUsername(username: String,password:String): Boolean {
         val db = this.readableDatabase
-        val selection = "$KEY_EMAIL = ?" //AND
-        val selectionArgs = arrayOf(username)
+        val selection = "$KEY_EMAIL = ? AND $KEY_PASSWORD = ?"
+        val selectionArgs = arrayOf(username,password)
         val cursor = db.query(TABLE_ACCOUNTS, null, selection, selectionArgs, null, null, null)
 
         var user = cursor.count >0

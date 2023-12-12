@@ -26,19 +26,22 @@ class LoginActivity : AppCompatActivity() {
             val loginUsername = binding.enterEmailLogin.text.toString()
             val loginPassword = binding.enterPasswordLogin.text.toString()
 
-            loginUser(loginUsername)
+            loginUser(loginUsername,loginPassword)
         }
-        }
+    }
 
 
-    private fun loginUser (username: String){
-        val UserExists = loginDBHelper.readUserByUsername(username)
-        if (UserExists){
+    private fun loginUser (username: String,password:String){
+        val LoginCorrect = loginDBHelper.readUserByUsername(username,password)
+        if (LoginCorrect){
             Toast.makeText(this, "Login Successful", Toast.LENGTH_LONG).show()
 
             val i = Intent(this, MainActivity::class.java )
             startActivity(i)
             finish()
+        }
+        else{
+            Toast.makeText(this, "Incorrect Details", Toast.LENGTH_LONG).show()
         }
     }
     fun goSignup (view: View){
