@@ -2,6 +2,7 @@ package com.example.profinder
 
 import android.annotation.SuppressLint
 import android.content.ContentValues
+import android.content.ContentValues.TAG
 import android.content.Context
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
@@ -27,14 +28,14 @@ class DBHelper (context: Context): SQLiteOpenHelper(context,DATABASE_NAME, null,
             private val KEY_ACCTYPE = "accountType" //checker if company type acc or normal user
 
         //Table for all jobs in the app - ITO UNG DATING JOBSCREATED
-        private val TABLE_JOBS = "jobDetails"
+        private val TABLE_JOBS = "Jobs"
             private const val KEY_JOB_ID = "jobDetailID"
             private const val KEY_ACC_ID_FK = "accountsID_FK" // Foreign Key to link with the Accounts tbl
-            /*private const val KEY_DETAIL_LOGO = "jobDetailLogo"*/
             private const val KEY_DETAIL_TITLE = "jobDetailTitle"
             private const val KEY_DETAIL_OFFEROR = "jobDetailOfferor"
             private const val KEY_DETAIL_SALARY = "jobDetailSalary"
             private const val KEY_DETAIL_LOCATION = "jobDetailLoc"
+            private const val KEY_DETAIL_STATUS = "jobDetailStatus"
             private const val KEY_DETAIL_JOBTYPE = "jobDetailType"
             private const val KEY_DETAIL_DATEPOSTED = "jobDatePosted"
             private const val KEY_DETAIL_JOBDESC = "jobDetailDesc"
@@ -63,8 +64,9 @@ class DBHelper (context: Context): SQLiteOpenHelper(context,DATABASE_NAME, null,
                 +   KEY_ACC_ID_FK +                     " INTEGER,"
                 +   KEY_DETAIL_TITLE +                  " STRING,"
                 +   KEY_DETAIL_OFFEROR +                " STRING,"
-                +   KEY_DETAIL_SALARY +                 " DOUBLE,"
+                +   KEY_DETAIL_SALARY +                 " STRING,"
                 +   KEY_DETAIL_LOCATION +               " STRING,"
+                +   KEY_DETAIL_STATUS +                 " STRING,"
                 +   KEY_DETAIL_JOBTYPE +                " STRING,"
                 +   KEY_DETAIL_JOBDESC +                " STRING,"
                 +   KEY_DETAIL_JOBRESPONSIBILITIES +    " STRING,"
@@ -118,6 +120,7 @@ class DBHelper (context: Context): SQLiteOpenHelper(context,DATABASE_NAME, null,
             put(KEY_DETAIL_OFFEROR, job.offeror)
             put(KEY_DETAIL_SALARY, job.jobSalary)
             put(KEY_DETAIL_LOCATION, job.jobLoc)
+            put(KEY_DETAIL_STATUS, job.jobStatus)
             put(KEY_DETAIL_JOBTYPE, job.jobType)
             put(KEY_DETAIL_JOBDESC, job.jobDesc)
             put(KEY_DETAIL_JOBRESPONSIBILITIES, job.jobResponsibility)
@@ -127,5 +130,125 @@ class DBHelper (context: Context): SQLiteOpenHelper(context,DATABASE_NAME, null,
         return db.insert(TABLE_JOBS, null, values)
     }
 
+    // VIEW JOBS
+    @SuppressLint("Range")
+    fun viewAllJobs(): List<JobsDataClass> {
+        val jobsList = mutableListOf<JobsDataClass>()
+        val db = this.readableDatabase
+        val query = "SELECT * FROM $TABLE_JOBS"
+        val cursor: Cursor = db.rawQuery(query, null)
+
+        if (cursor.moveToFirst()) {
+            do {
+                val job = JobsDataClass(
+                    cursor.getInt(cursor.getColumnIndex(KEY_JOB_ID)),
+                    cursor.getInt(cursor.getColumnIndex(KEY_ACC_ID_FK)),
+                    cursor.getString(cursor.getColumnIndex(KEY_DETAIL_TITLE)),
+                    cursor.getString(cursor.getColumnIndex(KEY_DETAIL_OFFEROR)),
+                    cursor.getString(cursor.getColumnIndex(KEY_DETAIL_SALARY)),
+                    cursor.getString(cursor.getColumnIndex(KEY_DETAIL_LOCATION)),
+                    cursor.getString(cursor.getColumnIndex(KEY_DETAIL_STATUS)),
+                    cursor.getString(cursor.getColumnIndex(KEY_DETAIL_JOBTYPE)),
+                    cursor.getString(cursor.getColumnIndex(KEY_DETAIL_JOBDESC)),
+                    cursor.getString(cursor.getColumnIndex(KEY_DETAIL_JOBRESPONSIBILITIES)),
+                    cursor.getString(cursor.getColumnIndex(KEY_DETAIL_QUALIFICATIONS)),
+                    cursor.getString(cursor.getColumnIndex(KEY_DETAIL_BENEFITS))
+                )
+                jobsList.add(job)
+            } while (cursor.moveToNext())
+        }
+        cursor.close()
+        db.close()
+        return jobsList
+    }
+
+    /*fun updateJob(job: JobsDataClass): Int{
+        val db = this.writableDatabase
+        val contentValues = ContentValues()
+        contentValues.put(KEY_DETAIL_TITLE, job.jobTitle)
+        contentValues.put(KEY_DETAIL_OFFEROR, job.offeror)
+        contentValues.put(KEY_DETAIL_SALARY, job.jobSalary)
+        contentValues.put(KEY_DETAIL_LOCATION, job.jobLoc)
+        contentValues.put(KEY_DETAIL_JOBTYPE, job.jobType)
+        contentValues.put(KEY_DETAIL_JOBDESC, job.jobDesc)
+        contentValues.put(KEY_DETAIL_JOBRESPONSIBILITIES, job.jobResponsibility)
+        contentValues.put(KEY_DETAIL_QUALIFICATIONS, job.jobQualifications)
+        contentValues.put(KEY_DETAIL_BENEFITS, job.jobBenefits)
+
+
+        val update = db.update(TABLE_JOBS, contentValues, "$KEY_JOB_ID=?", null)
+        db.close()
+        return update
+    }*/
+
+    //  UPDATE EXISTING JOBS
+    /*fun updateJob(job: JobsDataClass) {
+        val db = writableDatabase
+        val values = ContentValues().apply {
+            put(KEY_DETAIL_TITLE, job.jobTitle)
+            put(KEY_DETAIL_OFFEROR, job.offeror)
+            put(KEY_DETAIL_SALARY, job.jobSalary)
+            put(KEY_DETAIL_LOCATION, job.jobLoc)
+            put(KEY_DETAIL_JOBTYPE, job.jobType)
+            put(KEY_DETAIL_JOBDESC, job.jobDesc)
+            put(KEY_DETAIL_JOBRESPONSIBILITIES, job.jobResponsibility)
+            put(KEY_DETAIL_QUALIFICATIONS, job.jobQualifications)
+            put(KEY_DETAIL_BENEFITS, job.jobBenefits)
+        }
+
+        val whereClause = "$KEY_JOB_ID = ?"
+        val whereArgs = arrayOf(job.jobId.toString())
+
+        try {
+            val rowsAffected = db.update(TABLE_JOBS, values, whereClause, whereArgs)
+            Log.d(TAG, "Rows affected: $rowsAffected")
+        } catch (e: Exception) {
+            Log.e(TAG, "Error updating recipe", e)
+        } finally {
+            db.close()
+        }
+    }*/
+
+    //RETRIEVE VALUES FROM DB PARA MAY LAMAN FIELDS SA EDIT
+    /*fun getJobById(jobId : Int): JobsDataClass? {
+        val db = readableDatabase
+        val selection = "$KEY_JOB_ID = ?"
+        val selectionArgs = arrayOf(jobId.toString())
+
+        val cursor = db.query(TABLE_JOBS, null, selection, selectionArgs, null, null, null)
+
+        var jobs: JobsDataClass? = null
+
+        if (cursor.moveToFirst()) {
+            jobs = JobsDataClass(
+                cursor.getInt(cursor.getColumnIndexOrThrow(KEY_JOB_ID)),
+                cursor.getInt(cursor.getColumnIndexOrThrow(KEY_ACC_ID_FK)),
+                cursor.getString(cursor.getColumnIndexOrThrow(KEY_DETAIL_TITLE)),
+                cursor.getString(cursor.getColumnIndexOrThrow(KEY_DETAIL_OFFEROR)),
+                cursor.getString(cursor.getColumnIndexOrThrow(KEY_DETAIL_SALARY)),
+                cursor.getString(cursor.getColumnIndexOrThrow(KEY_DETAIL_LOCATION)),
+                cursor.getString(cursor.getColumnIndexOrThrow(KEY_DETAIL_JOBTYPE)),
+                cursor.getString(cursor.getColumnIndexOrThrow(KEY_DETAIL_JOBDESC)),
+                cursor.getString(cursor.getColumnIndexOrThrow(KEY_DETAIL_JOBRESPONSIBILITIES)),
+                cursor.getString(cursor.getColumnIndexOrThrow(KEY_DETAIL_QUALIFICATIONS)),
+                cursor.getString(cursor.getColumnIndexOrThrow(KEY_DETAIL_BENEFITS))
+            )
+        }
+        cursor.close()
+        db.close()
+        return jobs
+    }*/
+
+
+    //DELETE JOBS
+    /*fun deleteJob(recipeId: Int): Int {
+        return writableDatabase.use { db ->
+            db.delete(
+                TABLE_JOBS,
+                "$KEY_JOB_ID = ?",
+                arrayOf(recipeId.toString())
+            )
+        }
+    }*/
 
 }
