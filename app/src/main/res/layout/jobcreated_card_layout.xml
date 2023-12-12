@@ -46,6 +46,18 @@
                         android:textSize="22sp"
                         android:textStyle="bold"/>
 
+                    <Button
+                        android:id="@+id/editJob"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginHorizontal="5dp"
+                        android:layout_weight="1"
+                        android:text="EDIT JOB"
+                        android:gravity="end"
+                        android:textColor="@color/white"
+                        android:textSize="18sp"/>
+
 <!--                    <ImageButton
                         android:id="@+id/bookmarkBtn"
                         android:layout_width="wrap_content"

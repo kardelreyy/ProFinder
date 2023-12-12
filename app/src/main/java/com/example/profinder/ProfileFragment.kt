@@ -6,14 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 
-class ProfileFragment : Fragment(), ItemClickListener{
+class ProfileFragment : Fragment(){
     override fun onCreate(savedInstanceState: Bundle?) {
             super.onCreate(savedInstanceState)
 
-    }
-
-    override fun onItemClick(position: Int) {
-        TODO("Not yet implemented")
     }
 
     override fun onCreateView(

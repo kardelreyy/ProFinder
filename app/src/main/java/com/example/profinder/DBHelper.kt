@@ -162,55 +162,8 @@ class DBHelper (context: Context): SQLiteOpenHelper(context,DATABASE_NAME, null,
         return jobsList
     }
 
-    /*fun updateJob(job: JobsDataClass): Int{
-        val db = this.writableDatabase
-        val contentValues = ContentValues()
-        contentValues.put(KEY_DETAIL_TITLE, job.jobTitle)
-        contentValues.put(KEY_DETAIL_OFFEROR, job.offeror)
-        contentValues.put(KEY_DETAIL_SALARY, job.jobSalary)
-        contentValues.put(KEY_DETAIL_LOCATION, job.jobLoc)
-        contentValues.put(KEY_DETAIL_JOBTYPE, job.jobType)
-        contentValues.put(KEY_DETAIL_JOBDESC, job.jobDesc)
-        contentValues.put(KEY_DETAIL_JOBRESPONSIBILITIES, job.jobResponsibility)
-        contentValues.put(KEY_DETAIL_QUALIFICATIONS, job.jobQualifications)
-        contentValues.put(KEY_DETAIL_BENEFITS, job.jobBenefits)
-
-
-        val update = db.update(TABLE_JOBS, contentValues, "$KEY_JOB_ID=?", null)
-        db.close()
-        return update
-    }*/
-
-    //  UPDATE EXISTING JOBS
-    /*fun updateJob(job: JobsDataClass) {
-        val db = writableDatabase
-        val values = ContentValues().apply {
-            put(KEY_DETAIL_TITLE, job.jobTitle)
-            put(KEY_DETAIL_OFFEROR, job.offeror)
-            put(KEY_DETAIL_SALARY, job.jobSalary)
-            put(KEY_DETAIL_LOCATION, job.jobLoc)
-            put(KEY_DETAIL_JOBTYPE, job.jobType)
-            put(KEY_DETAIL_JOBDESC, job.jobDesc)
-            put(KEY_DETAIL_JOBRESPONSIBILITIES, job.jobResponsibility)
-            put(KEY_DETAIL_QUALIFICATIONS, job.jobQualifications)
-            put(KEY_DETAIL_BENEFITS, job.jobBenefits)
-        }
-
-        val whereClause = "$KEY_JOB_ID = ?"
-        val whereArgs = arrayOf(job.jobId.toString())
-
-        try {
-            val rowsAffected = db.update(TABLE_JOBS, values, whereClause, whereArgs)
-            Log.d(TAG, "Rows affected: $rowsAffected")
-        } catch (e: Exception) {
-            Log.e(TAG, "Error updating recipe", e)
-        } finally {
-            db.close()
-        }
-    }*/
-
     //RETRIEVE VALUES FROM DB PARA MAY LAMAN FIELDS SA EDIT
-    /*fun getJobById(jobId : Int): JobsDataClass? {
+    fun getJobById(jobId : Int): JobsDataClass? {
         val db = readableDatabase
         val selection = "$KEY_JOB_ID = ?"
         val selectionArgs = arrayOf(jobId.toString())
@@ -227,6 +180,7 @@ class DBHelper (context: Context): SQLiteOpenHelper(context,DATABASE_NAME, null,
                 cursor.getString(cursor.getColumnIndexOrThrow(KEY_DETAIL_OFFEROR)),
                 cursor.getString(cursor.getColumnIndexOrThrow(KEY_DETAIL_SALARY)),
                 cursor.getString(cursor.getColumnIndexOrThrow(KEY_DETAIL_LOCATION)),
+                cursor.getString(cursor.getColumnIndexOrThrow(KEY_DETAIL_STATUS)),
                 cursor.getString(cursor.getColumnIndexOrThrow(KEY_DETAIL_JOBTYPE)),
                 cursor.getString(cursor.getColumnIndexOrThrow(KEY_DETAIL_JOBDESC)),
                 cursor.getString(cursor.getColumnIndexOrThrow(KEY_DETAIL_JOBRESPONSIBILITIES)),
@@ -237,7 +191,31 @@ class DBHelper (context: Context): SQLiteOpenHelper(context,DATABASE_NAME, null,
         cursor.close()
         db.close()
         return jobs
-    }*/
+    }
+
+    //UPDATE JOBS
+    fun updateJob(job: JobsDataClass): Int {
+        val db = this.writableDatabase
+        val contentValues = ContentValues().apply {
+            put(KEY_ACC_ID_FK, job.userIdFK)
+            put(KEY_DETAIL_TITLE, job.jobTitle)
+            put(KEY_DETAIL_OFFEROR, job.offeror)
+            put(KEY_DETAIL_SALARY, job.jobSalary)
+            put(KEY_DETAIL_LOCATION, job.jobLoc)
+            put(KEY_DETAIL_STATUS, job.jobStatus)
+            put(KEY_DETAIL_JOBTYPE, job.jobType)
+            put(KEY_DETAIL_JOBDESC, job.jobDesc)
+            put(KEY_DETAIL_JOBRESPONSIBILITIES, job.jobResponsibility)
+            put(KEY_DETAIL_QUALIFICATIONS, job.jobQualifications)
+            put(KEY_DETAIL_BENEFITS, job.jobBenefits)
+        }
+
+        val updateJob = db.update(TABLE_JOBS, contentValues, "KEY_JOB_ID=?", null)
+
+        db.close()
+        return updateJob
+    }
+
 
 
     //DELETE JOBS

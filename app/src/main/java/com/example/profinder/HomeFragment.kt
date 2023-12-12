@@ -61,8 +61,16 @@ class HomeFragment : Fragment(){
                 intent.putExtra("position", position)
                 startActivity(intent)*/
             }
+
+            override fun onEditClick(position: Int) {
+               val intent = Intent(requireContext(), EditJob::class.java)
+                intent.putExtra("jobId", position)
+                startActivity(intent)
+            }
         })
         return view
     }
+
+
 }
 

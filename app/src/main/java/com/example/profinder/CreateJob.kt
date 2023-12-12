@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.Spinner
 import android.widget.Toast
 
@@ -28,8 +29,8 @@ class CreateJob : AppCompatActivity() {
         val qualifications = findViewById<EditText>(R.id.editQualifications)
         val benefits = findViewById<EditText>(R.id.editBenefits)
 
-        val back = findViewById<Button>(R.id.backBtn)
-        val save = findViewById<Button>(R.id.saveJobBtn)
+        val back = findViewById<ImageButton>(R.id.backBtn)
+        val save = findViewById<ImageButton>(R.id.saveJobBtn)
 
         save.setOnClickListener {
             val dbTitle = title.text.toString()
