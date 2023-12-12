@@ -1,11 +1,13 @@
 package com.example.profinder
 
+import android.annotation.SuppressLint
 import android.content.ContentValues
 import android.content.Context
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteException
 import android.database.sqlite.SQLiteOpenHelper
+import android.util.Log
 
 class DBHelper (context: Context): SQLiteOpenHelper(context,DATABASE_NAME, null, DATABASE_VERSION){
 
@@ -41,17 +43,19 @@ class DBHelper (context: Context): SQLiteOpenHelper(context,DATABASE_NAME, null,
             private const val KEY_DETAIL_BENEFITS = "jobDetailsBenefits"
 
         //Kulang nalang is Applicants Table hehe (yung sa JobsPosted tsaka JobsApplied may iba na me naisip kung pano)
-    }
 
+
+
+    }
+//creates a table
     override fun onCreate(db: SQLiteDatabase?) {
         val CREATE_ACCOUNTS_TABLE = ("CREATE TABLE " + TABLE_ACCOUNTS + "("
                 +   KEY_ACCOUNTS_ID +   " INTEGER PRIMARY KEY autoincrement,"
                 +   KEY_EMAIL +         " STRING,"
                 +   KEY_USERNAME +      " STRING,"
-                +   KEY_FIRSTNAME +     " STRING,"
-                +   KEY_LASTNAME +      " STRING,"
                 +   KEY_PASSWORD +       " STRING,"
-                +   KEY_ACCTYPE +        " STRING)")
+                +   KEY_FIRSTNAME +     " STRING,"
+                +   KEY_LASTNAME +      " STRING)")
         db?.execSQL(CREATE_ACCOUNTS_TABLE)
 
         val CREATE_JOB_TABLE = ("CREATE TABLE " + TABLE_JOBS + "("
@@ -76,41 +80,34 @@ class DBHelper (context: Context): SQLiteOpenHelper(context,DATABASE_NAME, null,
     }
 
     //ACCOUNT, LOGIN, SIGNUP FUNCTIONS
-    fun addAccount(email: String, username: String, firstname: String, lastname: String, password: String, accType: String): Long {
+    fun insertUser(user: UserModelClass): Long {
         val db = this.writableDatabase
-        val contentValues = ContentValues()
-        contentValues.put(KEY_EMAIL, email)
-        contentValues.put(KEY_USERNAME, username)
-        contentValues.put(KEY_FIRSTNAME, firstname)
-        contentValues.put(KEY_LASTNAME, lastname)
-        contentValues.put(KEY_PASSWORD, password)
-        contentValues.put(KEY_ACCTYPE, accType)
-
-        val result = db.insert(TABLE_ACCOUNTS, null, contentValues)
-        db.close()
-        return result
-    }
-
-    fun userLogin(username: String, password: String): Boolean {
-        val db = this.readableDatabase
-        val columns = arrayOf(KEY_USERNAME, KEY_PASSWORD)
-        val selection = "$KEY_USERNAME = ? AND $KEY_PASSWORD = ?"
-        val selectionArgs = arrayOf(username, password)
-
-        try {
-            val cursor: Cursor = db.query(TABLE_ACCOUNTS, columns, selection, selectionArgs, null, null, null)
-
-            val count = cursor.count
-            cursor.close()
-            db.close()
-
-            return count > 0
-        } catch (e: SQLiteException) {
-            e.printStackTrace()
-            db.close()
-            return false
+        val values = ContentValues().apply {
+            put(KEY_EMAIL, user.userEmail)
+            put(KEY_USERNAME, user.userName)
+            put(KEY_PASSWORD, user.userPassword)
+            put(KEY_FIRSTNAME, user.userFirstName)
+            put(KEY_LASTNAME, user.userLastName)
         }
+
+        return db.insert(TABLE_ACCOUNTS, null, values)
+        db.close()
+
     }
+    @SuppressLint("Range")
+    fun readUserByUsername(username: String): Boolean {
+        val db = this.readableDatabase
+        val selection = "$KEY_EMAIL = ?" //AND
+        val selectionArgs = arrayOf(username)
+        val cursor = db.query(TABLE_ACCOUNTS, null, selection, selectionArgs, null, null, null)
+
+        var user = cursor.count >0
+
+        cursor.close()
+        return user
+    }
+
+
 
     //CREATE, VIEW, UPDATE, DELETE JOBS
     fun insertJob(job: JobsDataClass) : Long{ //INSERT JOBS

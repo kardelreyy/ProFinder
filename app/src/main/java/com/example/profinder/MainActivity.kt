@@ -20,7 +20,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.home -> replaceFragment(HomeFragment())
                 R.id.employ -> replaceFragment(EmployFragment())
                 R.id.applied -> replaceFragment(ApplyFragment())
-
+                //insert fragment for profile
                 else ->{
 
                 }
