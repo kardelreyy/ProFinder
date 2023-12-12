@@ -39,41 +39,16 @@
                 android:layout_weight="1"
                 android:text="Email"
                 android:textColor="#000000"
-                android:textSize="22sp"
-                android:textStyle="bold" />
-
-            <EditText
-                android:id="@+id/emailProfileTB"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:editable="false"
-                android:ems="10"
-                android:inputType="text"
-                android:text="mark@gmail.com"
                 android:textSize="22sp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
             <TextView
-                android:id="@+id/passwordProfileTV"
+                android:id="@+id/emailTV"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
-                android:text="Password"
+                android:layout_weight="1"
+                android:text="Email"
+                android:textColor="#000000"
                 android:textSize="22sp" />
 
-            <EditText
-                android:id="@+id/passwordProfileTB"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="text"
-                android:text="Abc123##"
-                android:textSize="22dp" />
         </LinearLayout>
 
         <LinearLayout
@@ -87,37 +62,13 @@
                 android:layout_height="wrap_content"
                 android:text="Username"
                 android:textSize="22sp" />
-
-            <EditText
-                android:id="@+id/usernameProfileTB"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="text"
-                android:text="N/A"
-                android:textSize="22dp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
-
             <TextView
-                android:id="@+id/AccountTypeProfileTV"
+                android:id="@+id/usernameTV"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
-                android:text="Account type"
+                android:text="Username"
                 android:textSize="22sp" />
 
-            <EditText
-                android:id="@+id/AccountTypeProfileTB"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="text"
-                android:text="Normal"
-                android:textSize="22dp" />
         </LinearLayout>
 
     </LinearLayout>

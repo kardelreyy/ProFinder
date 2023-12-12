@@ -121,7 +121,50 @@ class DBHelper (context: Context): SQLiteOpenHelper(context,DATABASE_NAME, null,
         return user
     }
 
+    @SuppressLint("Range")
+    fun getUserData():List<UserModelClass>{
+        val userList : ArrayList<UserModelClass> = ArrayList<UserModelClass>()
+        val selectQuery = "SELECT * FROM $TABLE_ACCOUNTS"
+        val db = this.readableDatabase
+        var cursor: Cursor? = null
+        try {
+            cursor = db.rawQuery(selectQuery, null)
+        }catch (e:SQLiteException){
+            db.execSQL(selectQuery)
+            return ArrayList()
+        }
 
+        var userID : Int
+        var userEmail : String
+        var userName :String
+        var userPassword :String
+        var fName :String
+        var lName :String
+
+
+        if (cursor.moveToFirst()){
+            do {
+                userID = cursor.getInt(cursor.getColumnIndex("accountsID"))
+                userEmail = cursor.getString(cursor.getColumnIndex("email"))
+                userName = cursor.getString(cursor.getColumnIndex("username"))
+                userPassword = cursor.getString(cursor.getColumnIndex("password"))
+                fName = cursor.getString(cursor.getColumnIndex("firstname"))
+                lName = cursor.getString(cursor.getColumnIndex("lastname"))
+
+                val user= UserModelClass(
+                    userId = userID,
+                    userEmail = userEmail,
+                    userName =userName,
+                    userPassword = userPassword,
+                    userFirstName = fName,
+                    userLastName = lName
+                )
+
+                userList.add(user)
+            }while(cursor.moveToNext())
+        }
+        return userList
+    }
 
     //CREATE, VIEW, UPDATE, DELETE JOBS
     fun insertJob(job: JobsDataClass) : Long{ //INSERT JOBS
