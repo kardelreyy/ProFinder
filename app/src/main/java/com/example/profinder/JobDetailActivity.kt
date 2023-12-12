@@ -1,16 +1,21 @@
 package com.example.profinder
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 
 class JobDetailActivity : AppCompatActivity() {
+    private lateinit var dbHelper: DBHelper
     //basta ito yung activity na lalabas kapag pinindot yung card sa homepage
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home_job_details)
+
+        dbHelper = DBHelper(this)
 
         val backToHome : Button = findViewById(R.id.btnBack)
         backToHome.setOnClickListener {
@@ -18,6 +23,10 @@ class JobDetailActivity : AppCompatActivity() {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
+        //get from shared prefs
+        val sharedPreferences = getSharedPreferences("UserPrefs", Context.MODE_PRIVATE)
+        // Retrieve data from SharedPreferences
+        val userId = sharedPreferences.getInt("USER_ID", 0)
 
         val intent = intent
         val jobId = intent.getIntExtra("jobId", 0)
@@ -57,6 +66,24 @@ class JobDetailActivity : AppCompatActivity() {
 
         val sheetBenefits = findViewById<TextView>(R.id.sheetBenefits)
         sheetBenefits.text = jobBenefits
+
+
+        val applyJob : Button = findViewById(R.id.btnSheetApply)
+        applyJob.setOnClickListener {
+            val insertApplyJob = dbHelper.insertApplyJob(jobId, userId)
+
+            finish()
+            if (insertApplyJob != 1L) {
+                Toast.makeText(this, "Applied Job Successfully", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(this, "Apply Job Failed", Toast.LENGTH_SHORT)
+                    .show()
+            }
+
+
+            val toApplyFragment = Intent(this, MainActivity::class.java)
+            startActivity(toApplyFragment)
+        }
 
 
     }

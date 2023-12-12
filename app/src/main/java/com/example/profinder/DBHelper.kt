@@ -82,10 +82,10 @@ class DBHelper (context: Context): SQLiteOpenHelper(context,DATABASE_NAME, null,
         val CREATE_APPLICANTS_TABLE = ("CREATE TABLE " + TABLE_APPLICANTS + "("
             +   KEY_APPLICATION_ID +    " INTEGER PRIMARY KEY autoincrement,"
             +   KEY_JOB_ID_FK +         " INTEGER,"
-            +   KEY_ACC_ID_FK1 +        " INTEGER,"
+            +   KEY_ACC_ID_FK1 +         " INTEGER,"
             +   KEY_APP_STATUS +        " STRING,"
-            +   "FOREIGN KEY($KEY_JOB_ID_FK) REFERENCES $TABLE_JOBS($KEY_JOB_ID))"
-            +   "FOREIGN KEY($KEY_ACC_ID_FK1) REFERENCES $TABLE_ACCOUNTS($KEY_ACCOUNTS_ID))")
+            +   "FOREIGN KEY($KEY_JOB_ID_FK) REFERENCES $TABLE_JOBS($KEY_JOB_ID))")
+        db?.execSQL(CREATE_APPLICANTS_TABLE)
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
@@ -109,13 +109,25 @@ class DBHelper (context: Context): SQLiteOpenHelper(context,DATABASE_NAME, null,
 
     }
     @SuppressLint("Range")
-    fun readUserByUsername(username: String,password:String): Boolean {
+    fun readUserByUsername(data: UserModelClass): UserModelClass? {
         val db = this.readableDatabase
         val selection = "$KEY_EMAIL = ? AND $KEY_PASSWORD = ?"
-        val selectionArgs = arrayOf(username,password)
+        val selectionArgs = arrayOf(data.userEmail,data.userPassword)
         val cursor = db.query(TABLE_ACCOUNTS, null, selection, selectionArgs, null, null, null)
 
-        var user = cursor.count >0
+        var user: UserModelClass? = null
+
+        if (cursor.moveToFirst()) {
+            // User found, retrieve details
+            user = UserModelClass(
+                cursor.getInt(cursor.getColumnIndex(KEY_ACCOUNTS_ID)),
+                cursor.getString(cursor.getColumnIndex(KEY_EMAIL)),
+                cursor.getString(cursor.getColumnIndex(KEY_USERNAME)),
+                cursor.getString(cursor.getColumnIndex(KEY_PASSWORD)),
+                cursor.getString(cursor.getColumnIndex(KEY_FIRSTNAME)),
+                cursor.getString(cursor.getColumnIndex(KEY_LASTNAME))
+            )
+        }
 
         cursor.close()
         return user
@@ -228,6 +240,55 @@ class DBHelper (context: Context): SQLiteOpenHelper(context,DATABASE_NAME, null,
         return updateJob
     }
 
+    fun insertApplyJob(jobId: Int, userId: Int) : Long{ //INSERT JOBS
+        val db = this.writableDatabase
+        val values = ContentValues().apply{
+            put(KEY_JOB_ID_FK, jobId)
+            put(KEY_ACC_ID_FK1, userId)
+            put(KEY_APP_STATUS, "1")
+        }
+        return db.insert(TABLE_APPLICANTS, null, values)
+    }
+
+    @SuppressLint("Range")
+    fun getAllApplyByUserId(userId: Int): List<JobsDataClass>  {
+        val appliedList = mutableListOf<JobsDataClass>()
+
+        val selectQuery = "SELECT Applicants.*, Jobs.*\n" +
+                "FROM Applicants\n" +
+                "INNER JOIN Jobs ON Applicants.jobId_FK = Jobs.jobDetailID\n" +
+                "WHERE Applicants.accountsId_FK = ?"
+        val db = this.readableDatabase
+        val cursor = db.rawQuery(selectQuery, arrayOf(userId.toString()))
+
+        var jobs: JobsDataClass? = null
+
+        if (cursor.moveToFirst()) {
+            do{
+                jobs = JobsDataClass(
+                    cursor.getInt(cursor.getColumnIndexOrThrow(KEY_JOB_ID)),
+                    cursor.getInt(cursor.getColumnIndexOrThrow(KEY_ACC_ID_FK)),
+                    cursor.getString(cursor.getColumnIndexOrThrow(KEY_DETAIL_TITLE)),
+                    cursor.getString(cursor.getColumnIndexOrThrow(KEY_DETAIL_OFFEROR)),
+                    cursor.getString(cursor.getColumnIndexOrThrow(KEY_DETAIL_SALARY)),
+                    cursor.getString(cursor.getColumnIndexOrThrow(KEY_DETAIL_LOCATION)),
+                    cursor.getString(cursor.getColumnIndexOrThrow(KEY_DETAIL_STATUS)),
+                    cursor.getString(cursor.getColumnIndexOrThrow(KEY_DETAIL_JOBTYPE)),
+                    cursor.getString(cursor.getColumnIndexOrThrow(KEY_DETAIL_JOBDESC)),
+                    cursor.getString(cursor.getColumnIndexOrThrow(KEY_DETAIL_JOBRESPONSIBILITIES)),
+                    cursor.getString(cursor.getColumnIndexOrThrow(KEY_DETAIL_QUALIFICATIONS)),
+                    cursor.getString(cursor.getColumnIndexOrThrow(KEY_DETAIL_BENEFITS))
+                )
+                appliedList.add(jobs)
+            } while (cursor.moveToNext())
+
+        }
+
+        cursor.close()
+//        db.close()
+
+        return appliedList
+    }
 
 
     //DELETE JOBS

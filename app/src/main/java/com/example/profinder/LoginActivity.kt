@@ -1,5 +1,6 @@
 package com.example.profinder
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.sax.StartElementListener
@@ -32,9 +33,15 @@ class LoginActivity : AppCompatActivity() {
 
 
     private fun loginUser (username: String,password:String){
-        val LoginCorrect = loginDBHelper.readUserByUsername(username,password)
-        if (LoginCorrect){
+        val LoginCorrect = loginDBHelper.readUserByUsername(UserModelClass(0, username, "", password, "",""))
+        if (LoginCorrect != null){
             Toast.makeText(this, "Login Successful", Toast.LENGTH_LONG).show()
+
+            // Save userId to SharedPreferences
+            val sharedPreferences = getSharedPreferences("UserPrefs", Context.MODE_PRIVATE)
+            val editor = sharedPreferences.edit()
+            editor.putInt("USER_ID", LoginCorrect.userId)
+            editor.apply()
 
             val i = Intent(this, MainActivity::class.java )
             startActivity(i)
