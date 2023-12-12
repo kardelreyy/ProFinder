@@ -1,5 +1,6 @@
 package com.example.profinder
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -7,6 +8,7 @@ import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.Spinner
 import android.widget.Toast
+import androidx.core.content.ContentProviderCompat.requireContext
 
 class CreateJob : AppCompatActivity() {
     private lateinit var dbHelper: DBHelper
@@ -48,8 +50,13 @@ class CreateJob : AppCompatActivity() {
                 || dbType.isEmpty() || dbDesc.isEmpty() || dbRespon.isEmpty() || dbQuali.isEmpty() || dbBenefits.isEmpty()) {
                 Toast.makeText(this, "Please fill in all fields", Toast.LENGTH_LONG).show()
             } else {
+                //get from shared prefs
+                val sharedPreferences = getSharedPreferences("UserPrefs", Context.MODE_PRIVATE)
+                // Retrieve data from SharedPreferences
+                val userId = sharedPreferences.getInt("USER_ID", 0)
+
                 // if fields are ano, magadd na sha
-                val job = JobsDataClass(0, 0, dbTitle, dbOfferor, dbSalary, dbLoc, dbStatus, dbType, dbDesc, dbRespon, dbQuali, dbBenefits)
+                val job = JobsDataClass(0, userId, dbTitle, dbOfferor, dbSalary, dbLoc, dbStatus, dbType, dbDesc, dbRespon, dbQuali, dbBenefits)
                 val insertJob = dbHelper.insertJob(job)
 
                 finish()
