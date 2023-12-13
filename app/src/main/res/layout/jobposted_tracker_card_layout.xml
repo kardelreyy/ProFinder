@@ -38,20 +38,6 @@
                 android:textSize="25sp"
                 android:textStyle="bold"/>
 
-            <TextView
-                android:id="@+id/employStatus"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="10dp"
-                android:layout_marginTop="8dp"
-                android:text="Status"
-                android:textStyle="bold"
-                android:paddingHorizontal="12dp"
-                android:paddingBottom="3dp"
-                android:background="@drawable/searchbar_bg"
-                android:backgroundTint="@color/theme"
-                android:textColor="@color/white"
-                android:textSize="18sp"/>
         </LinearLayout>
 
             <TextView
@@ -59,96 +45,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
+                android:layout_marginBottom="10dp"
                 android:drawableLeft="@drawable/outline_location_on_24"
                 android:text="Branch"
                 android:textColor="@color/darksubtext"
                 android:textSize="16sp"/>
 
-        <TextView
-            android:id="@+id/deleteJobBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="15dp"
-            android:text="DELETE"
-            android:textColor="@color/darksubtext"
-            android:textSize="20sp"/>
 
-        <TextView
-            android:id="@+id/editJobBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="15dp"
-            android:text="EDIT"
-            android:textColor="@color/darksubtext"
-            android:textSize="20sp"/>
-
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/lightsubtext"
-            android:layout_marginHorizontal="12dp"
-            android:layout_marginVertical="5dp"/>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginBottom="10dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:text="Applicants:"
-                android:textColor="@color/darksubtext"
-                android:textSize="15sp"/>
-
-            <TextView
-                android:id="@+id/employTotalApplicants"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="#"
-                android:layout_marginLeft="3dp"
-                android:textColor="@color/lightsubtext"
-                android:textSize="15sp"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="18dp"
-                android:text="Rejected:"
-                android:textColor="@color/darksubtext"
-                android:textSize="15sp"/>
-
-            <TextView
-                android:id="@+id/employRejectNum"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="#"
-                android:layout_marginLeft="3dp"
-                android:textColor="@color/lightsubtext"
-                android:textSize="15sp"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="18dp"
-                android:text="Accepted:"
-                android:textColor="@color/darksubtext"
-                android:textSize="15sp"/>
-
-            <TextView
-                android:id="@+id/employAcceptNum"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="#"
-                android:layout_marginLeft="3dp"
-                android:textColor="@color/lightsubtext"
-                android:textSize="15sp"/>
-        </LinearLayout>
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>

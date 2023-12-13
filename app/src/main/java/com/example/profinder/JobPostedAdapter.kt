@@ -11,11 +11,7 @@ class JobPostedAdapter(private val dataList: ArrayList<JobPostedDataClass>): Rec
 
     class ViewHolderClass(itemView: View): RecyclerView.ViewHolder(itemView) {
         val rvJobTitle: TextView = itemView.findViewById(R.id.employJobTitle)
-        val rvStatus: TextView = itemView.findViewById(R.id.employStatus)
         val rvBranch: TextView = itemView.findViewById(R.id.employBranch)
-        val rvApplicants: TextView = itemView.findViewById(R.id.employTotalApplicants)
-        val rvRejected: TextView = itemView.findViewById(R.id.employRejectNum)
-        val rvAccepted: TextView = itemView.findViewById(R.id.employAcceptNum)
 
     }
 
@@ -31,10 +27,6 @@ class JobPostedAdapter(private val dataList: ArrayList<JobPostedDataClass>): Rec
     override fun onBindViewHolder(holder: ViewHolderClass, position: Int) {
         val currentItem = dataList[position]
         holder.rvJobTitle.text = currentItem.edJobTitle
-        holder.rvStatus.text = currentItem.edStatus
         holder.rvBranch.text = currentItem.edBranch
-        holder.rvApplicants.text = currentItem.edApplicants
-        holder.rvRejected.text = currentItem.edRejected
-        holder.rvAccepted.text = currentItem.edAccepted
     }
 }

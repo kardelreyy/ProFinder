@@ -35,8 +35,8 @@ class LoginActivity : AppCompatActivity() {
             Toast.makeText(this, "Please Enter Email and Password", Toast.LENGTH_SHORT).show();
 
         } else {
-            val LoginCorrect = loginDBHelper.readUserByUsername(username, password)
-            if (LoginCorrect) {
+            val LoginCorrect = loginDBHelper.readUserByUsername(UserModelClass(0, username, "", password, "",""))
+            if (LoginCorrect !=null) {
                 Toast.makeText(this, "Login Successful", Toast.LENGTH_LONG).show()
 
                 val i = Intent(this, MainActivity::class.java)

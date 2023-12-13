@@ -53,16 +53,6 @@
                     android:textColor="@color/darksubtext"
                     android:textSize="16sp" />
             </LinearLayout>
-
-            <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@color/transparent"
-                android:padding="10dp"
-                android:src="@drawable/outline_cancel_24"
-                android:tint="@color/theme"
-                android:tooltipText="Cancel Application">
-            </ImageButton>
         </LinearLayout>
 
         <TextView
